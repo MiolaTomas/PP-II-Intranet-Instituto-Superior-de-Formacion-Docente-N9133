@@ -1,16 +1,9 @@
 import { Router } from "express";
 import { prisma } from "../config/prisma.js";
+import { obtenerAlumnos } from "../controllers/alumno.controller.js";
 
 const router = Router();
 
-router.get("/", async (req, res) => {
-  try {
-    const alumnos = await prisma.alumno.findMany();
-    res.json(alumnos);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send({ message: "Internal server error" });
-  }
-});
+router.get("/", obtenerAlumnos);
 
 export default router;
